@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_management_riverpod/counter_view_model.dart';
 
-class CounterView extends StatefulWidget {
-  const CounterView({Key? key}) : super(key: key);
-
-  @override
-  State<CounterView> createState() => _CounterViewState();
-}
-
-class _CounterViewState extends State<CounterView> {
-  @override
-  Widget build(BuildContext context) {
+class CounterView extends ConsumerWidget {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.watch(stateProvider);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -17,13 +12,15 @@ class _CounterViewState extends State<CounterView> {
         ),
         body: Center(
           child: Text(
-            "0",
+            provider.counter.toString(),
             style: TextStyle(fontSize: 50.0),
           ),
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () {
+            provider.add();
+          },
         ),
       ),
     );
