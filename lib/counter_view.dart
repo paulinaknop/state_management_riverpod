@@ -4,7 +4,7 @@ import 'package:state_management_riverpod/counter_view_model.dart';
 
 class CounterView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
-    print("ho");
+    print("Rebuilding checker");
     final provider = ref.watch(stateProvider);
     return SafeArea(
       child: Scaffold(
